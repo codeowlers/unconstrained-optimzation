@@ -1,5 +1,5 @@
 import numpy as np
-from algorithms import rosenbrock
+from algorithms import rosenbrock, gradient
 
 
 # Define the Hessian matrix of the Rosenbrock function
@@ -16,5 +16,6 @@ def hessian(f, x0, epsilon=1e-4):
         x_plus[i] += epsilon
         x_minus = np.copy(x0)
         x_minus[i] -= epsilon
-        hessian[i] = (f(x_plus) - 2 * f(x0) + f(x_minus)) / epsilon**2
+        gradient_i = gradient(f, x_plus) - gradient(f, x_minus)
+        hessian[i] = gradient_i / (2 * epsilon)
     return hessian

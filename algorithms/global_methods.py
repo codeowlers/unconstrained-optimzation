@@ -17,7 +17,13 @@ def newton(x0, epsilon=1e-8, max_iter=100):
         # Increase the iteration number by 1
         iter += 1
         # Update x using the Newton method
-        x = x - np.linalg.inv(hessian(rosenbrock, x)).dot(gradient_rosenbrock)
+        hessian_matrix = hessian(rosenbrock, x)
+        try:
+            inverse = np.linalg.inv(hessian_matrix)
+        except np.linalg.LinAlgError:
+            inverse = np.linalg.pinv(hessian_matrix)
+        x = x - inverse.dot(gradient_rosenbrock)
+        gradient_rosenbrock = gradient(rosenbrock,x)
     # Record the end time
     end_time = time.time()
     # Return the optimal point x, the number of iterations, and the elapsed time
@@ -25,7 +31,7 @@ def newton(x0, epsilon=1e-8, max_iter=100):
 
 
 # Define the function `steepest_descent` with four input arguments
-def steepest_descent(x0, learning_rate=0.01, epsilon=1e-8, max_iter=100):
+def steepest_descent(x0, learning_rate=0.00001, epsilon=1e-8, max_iter=100):
     # Initialize the input argument `x0` as the variable `x`
     x = x0
     gradient_rosenbrock = gradient(rosenbrock,x)
