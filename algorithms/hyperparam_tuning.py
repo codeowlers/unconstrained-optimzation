@@ -1,5 +1,4 @@
-import random
-import time
+import numpy as np
 from sklearn.metrics import mean_squared_error
 
 from algorithms import steepest_descent
@@ -20,9 +19,9 @@ def grid_search(x0, f, g, learning_rates, epsilons, max_iters):
 
 
 # Define the range of values for each hyperparameter
-learning_rates = [0.00001, 0.0001, 0.001]
-epsilons = [1e-6, 1e-8, 1e-10]
-max_iters = [100, 500, 1000]
+# learning_rates = [0.00001, 0.0001, 0.001]
+# epsilons = [1e-6, 1e-8, 1e-10]
+# max_iters = [100, 500, 1000]
 
 # best_params, best_mse = grid_search(x0, rosenbrock, gradient, learning_rates, epsilons, max_iters)
 # print("Best hyperparameters:", best_params)
