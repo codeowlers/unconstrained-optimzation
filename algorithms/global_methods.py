@@ -58,7 +58,7 @@ def newton_back_tracking(x0, epsilon=1e-8, max_iter=100, c=1e-4, rho=0.5):
 
 
 # Define the function `steepest_descent_back_tracking` with five input arguments
-def steepest_descent_back_tracking(x0 , epsilon=1e-8, max_iter=100, c=1e-4, rho=0.5):
+def steepest_descent_back_tracking(x0, c=1e-4, rho=0.5, epsilon=1e-8, max_iter=100):
     x = x0
     gradient_rosenbrock = gradient(rosenbrock, x)
     # Initialize the iteration count to 0
