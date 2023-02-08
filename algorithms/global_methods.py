@@ -1,7 +1,16 @@
 import numpy as np
 import time
 
-from algorithms import hessian, gradient,rosenbrock
+from algorithms import hessian, gradient, rosenbrock
+
+
+def backtracking(x, d, f, g, alpha=0.5, beta=0.0001):
+    t = 1
+    while f(x + t * d) > f(x) + beta * t * np.dot(g, d):
+        t *= alpha
+    return t
+
+
 
 # Define the Newton method for finding the minimum of a function
 def newton(x0, epsilon=1e-8, max_iter=100):
@@ -29,12 +38,10 @@ def newton(x0, epsilon=1e-8, max_iter=100):
     # Return the optimal point x, the number of iterations, and the elapsed time
     return x, iter, end_time - start_time
 
-
 # Define the function `steepest_descent` with four input arguments
-def steepest_descent(x0, learning_rate=0.00001, epsilon=1e-8, max_iter=100):
-    # Initialize the input argument `x0` as the variable `x`
+def steepest_descent(x0, learning_rate=0.00001, epsilon=1e-8, max_iter=1000):
     x = x0
-    gradient_rosenbrock = gradient(rosenbrock,x)
+    gradient_rosenbrock = gradient(rosenbrock, x)
     # Initialize the iteration count to 0
     iter = 0
     # Record the starting time
@@ -43,8 +50,12 @@ def steepest_descent(x0, learning_rate=0.00001, epsilon=1e-8, max_iter=100):
     while np.linalg.norm(gradient_rosenbrock) >= epsilon and iter < max_iter:
         # Increase the iteration count by 1
         iter += 1
+        # Compute negative gradient 
+        d = -gradient_rosenbrock
         # Update the variable `x` using the gradient and the learning rate
-        x = x - learning_rate * gradient_rosenbrock
+        t = backtracking(x, d, rosenbrock, gradient_rosenbrock)
+        x = x + t * d
+
     # Record the ending time
     end_time = time.time()
     # Return the updated variable `x`, the number of iterations, and the total time taken
