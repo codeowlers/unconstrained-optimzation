@@ -1,4 +1,4 @@
-from .rosenbrock_function import rosenbrock, rosenbrock_gradient, rosenbrock_hessian
+from .rosenbrock import rosenbrock, rosenbrock_gradient, rosenbrock_hessian
 from .gradient import gradient
 from .hessian import hessian
 from .global_methods import newton, newton_back_tracking, steepest_descent, steepest_descent_back_tracking
