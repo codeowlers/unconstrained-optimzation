@@ -16,7 +16,8 @@ def plot(function, x_vals, title):
 
     # Plot the last value in green
     last_val = x_vals[-1,:]
-    plt.scatter(last_val[0], last_val[1], c='green',s=12)
+    plt.scatter(last_val[0], last_val[1], c='green',s=12,label='Optimal Solution')
 
     plt.title(title)
+    plt.legend()
     plt.show()
