@@ -8,7 +8,7 @@ def broyden_tridiagonal(x, n):
     return 0.5 * result
 
 
-def gradient_broyden_tridiagonal(x, n):
+def broyden_tridiagonal_gradient(x, n):
     gradient = np.zeros(n)
     for k in range(n):
         fk = (3 - 2*x[k]) * x[k] - x[k-1] - 2*x[k+1] + 1
@@ -17,7 +17,7 @@ def gradient_broyden_tridiagonal(x, n):
         gradient[k+1] += 2*x[k]
     return gradient
 
-def hessian_broyden_tridiagonal(x, n):
+def broyden_tridiagonal_hessian(x, n):
     hessian = np.zeros((n, n))
     for k in range(n):
         hessian[k][k] = -2 + 2
