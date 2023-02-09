@@ -1,12 +1,33 @@
-# Problem 1. Chained Rosenbrock function
+import numpy as np
+
 def chained_rosenbrock(x):
     n = len(x)
-    sum = 0
+    f = 0
     for i in range(1, n):
-        if i % 2 == 1:
-            x_i = -1.2
-        else:
-            x_i = 1.0
-        x_prev = x[i-1]
-        sum += (100 * (x_prev**2 - x_i)**2 + (x_prev - 1)**2)
-    return sum
+        f = f + 100*((x[i-1]**2 - x[i])**2) + ((x[i-1]- 1)**2)
+    return f
+
+def chained_rosenbrock_gradient(x):
+    n = len(x)
+    gradient = np.zeros(n)
+    for i in range(1, n):
+        gradient[i-1] = 400*(x[i-1]**2 - x[i])*x[i-1] + 2*(x[i-1] - 1)
+        gradient[i] = -200*(x[i-1]**2 - x[i])
+    return gradient
+
+def chained_rosenbrock_hessian(x):
+    n = len(x)
+    hessian = np.zeros((n, n))
+    for i in range(1, n):
+        hessian[i-1, i-1] = 400*(3*x[i-1]**2 - x[i]) + 2
+        hessian[i, i-1] = hessian[i-1, i] = -400*x[i-1]
+    return hessian
+
+# Define the initial guess for the optimization problem
+# n = 10
+# x_bar = np.zeros(n)
+# for i in range(n):
+#     if (i % 2) == 1:
+#         x_bar[i] = -1.2
+#     else:
+#         x_bar[i] = 1.0
