@@ -1,6 +1,12 @@
+# INPUTS:
+# X: n by 1 vector representing a point in the n-dimensional space
+# OUTPUTS:
+# Fx: the value of the extended rosenbrock function at X
+
+
 def extended_rosenbrock(X):
     def f_k_odd(x, k):
-        return 100 * (x[k]**2 - x[k+1])**2
+        return 10 * (x[k]**2 - x[k+1])**2
 
     def f_k_even(x, k):
         return (x[k-1] - 1)**2
