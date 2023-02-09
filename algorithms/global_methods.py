@@ -112,6 +112,7 @@ def steepest_descent(x0, function, gradient, epsilon=1e-8, max_iter=100):
 
 def inexact_newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, max_iter=100, c=1e-4, rho=0.5, delta=0.5):
     x = x0
+    x_vals = [x]
     gradient_x = gradient(x)
     iter = 0
     start_time = time.time()
@@ -129,6 +130,7 @@ def inexact_newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, 
                 break
             hessian_x = hessian_x * delta
         x = x + t * dx
+        x_vals.append(x)
         gradient_x = gradient(x)
     end_time = time.time()
-    return x, iter, end_time - start_time
+    return x, iter, end_time - start_time, x_vals
