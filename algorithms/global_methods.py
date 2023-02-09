@@ -57,7 +57,7 @@ def newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, max_iter
 
 
 # Define the function `steepest_descent` with four input arguments
-def steepest_descent_back_tracking(x0, function, gradient, epsilon=1e-8, max_iter=100):
+def steepest_descent_back_tracking(x0, function, gradient, epsilon=1e-8, max_iter=100, c=1e-4, rho=0.5):
     x = x0
     gradient_x = gradient(x)
     # Initialize the iteration count to 0
@@ -71,7 +71,7 @@ def steepest_descent_back_tracking(x0, function, gradient, epsilon=1e-8, max_ite
         # Compute negative gradient 
         d = -gradient_x
         # Update the variable `x` using the gradient and the learning rate
-        t = backtracking(x, d, function, gradient_x)
+        t = backtracking(x, d, function, gradient_x,c, rho)
         x = x + t * d
 
     # Record the ending time
