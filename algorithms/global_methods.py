@@ -1,6 +1,5 @@
 import numpy as np
 import time
-from algorithms import hessian, gradient, rosenbrock
 
 def backtracking(x, d, f, g, c=0.0001, rho=0.5):
     t = 1
