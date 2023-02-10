@@ -17,6 +17,7 @@ def grid_search(x0, f, g, learning_rates, epsilons, max_iters):
                     best_params = (epsilon, max_iter)
     return best_params, best_mse
 
+
 def grid_search_steepest_descent(x0):
     # Find the optimal point, number of iterations, and elapsed time using the Newton method
     c_range = [1e-5, 1e-4, 1e-3, 1e-2, 1e-1]
@@ -38,12 +39,10 @@ def grid_search_steepest_descent(x0):
                 best_c = c
                 best_rho = rho
                 best_x_opt = x_opt
-                best_iter = iter 
-                best_elapsed_time = elapsed_time  
+                best_iter = iter
+                best_elapsed_time = elapsed_time
 
     return best_x_opt, best_iter, best_elapsed_time, best_c, best_rho
-    
-    
 
 # Define the range of values for each hyperparameter
 # learning_rates = [0.00001, 0.0001, 0.001]

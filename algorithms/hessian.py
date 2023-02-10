@@ -1,5 +1,6 @@
 import numpy as np
-from . import gradient 
+from . import gradient
+
 
 def hessian(f, x0, epsilon=1e-4):
     n = len(x0)

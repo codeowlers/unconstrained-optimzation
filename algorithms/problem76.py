@@ -2,25 +2,27 @@
 
 import numpy as np
 
+
 def problem76(x):
     n = len(x)
     Fx = 0
     for k in range(n):
         if k < n - 1:
-            Fx = Fx + (x[k] - (x[k+1]**2 / 10))**2
+            Fx = Fx + (x[k] - (x[k + 1] ** 2 / 10)) ** 2
         else:
-            Fx = Fx + (x[k] - (x[0]**2 / 10))**2
+            Fx = Fx + (x[k] - (x[0] ** 2 / 10)) ** 2
     Fx = Fx / 2
     return Fx
+
 
 def problem76_gradient(x):
     n = len(x)
     grad = np.zeros(n)
     for k in range(n):
         if k < n - 1:
-            grad[k] = 2 * (x[k] - (x[k+1]**2 / 10))
+            grad[k] = 2 * (x[k] - (x[k + 1] ** 2 / 10))
         else:
-            grad[k] = 2 * (x[k] - (x[0]**2 / 10))
+            grad[k] = 2 * (x[k] - (x[0] ** 2 / 10))
     return grad
 
 

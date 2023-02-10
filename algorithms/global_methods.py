@@ -1,12 +1,12 @@
 import numpy as np
 import time
 
+
 def backtracking(x, d, f, g, c=0.0001, rho=0.5):
     t = 1
     while f(x + t * d) > f(x) + c * t * np.dot(g, d):
         t *= rho
     return t
-
 
 
 # Define the Newton method for finding the minimum of a function
@@ -34,7 +34,6 @@ def newton(x0, function, gradient, hessian, epsilon=1e-8, max_iter=100):
     end_time = time.time()
     # Return the optimal point x, the number of iterations, and the elapsed time
     return x, iter, end_time - start_time
-
 
 
 def newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, max_iter=100, c=1e-4, rho=0.5):
@@ -75,18 +74,18 @@ def steepest_descent_back_tracking(x0, function, gradient, epsilon=1e-8, max_ite
         # Compute negative gradient 
         d = -gradient_x
         # Update the variable `x` using the gradient and the learning rate
-        t = backtracking(x, d, function, gradient_x,c, rho)
+        t = backtracking(x, d, function, gradient_x, c, rho)
         x = x + t * d
         x_vals.append(x)
-
 
     # Record the ending time
     end_time = time.time()
     # Return the updated variable `x`, the number of iterations, and the total time taken
     return x, iter, end_time - start_time, x_vals
 
-
     # Define the function `steepest_descent` with four input arguments
+
+
 def steepest_descent(x0, function, gradient, epsilon=1e-8, max_iter=100):
     x = x0
     gradient_x = gradient(x)
@@ -110,7 +109,8 @@ def steepest_descent(x0, function, gradient, epsilon=1e-8, max_iter=100):
     return x, iter, end_time - start_time
 
 
-def inexact_newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, max_iter=100, c=1e-4, rho=0.5, delta=0.5):
+def inexact_newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, max_iter=100, c=1e-4, rho=0.5,
+                                 delta=0.5):
     x = x0
     x_vals = [x]
     gradient_x = gradient(x)
@@ -126,7 +126,7 @@ def inexact_newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, 
         dx = -inverse.dot(gradient_x)
         while True:
             t = backtracking(x, dx, function, gradient_x, c, rho)
-            if abs(gradient(x + t * dx).T.dot(dx)) <= delta * np.linalg.norm(gradient_x)**2:
+            if abs(gradient(x + t * dx).T.dot(dx)) <= delta * np.linalg.norm(gradient_x) ** 2:
                 break
             hessian_x = hessian_x * delta
         x = x + t * dx

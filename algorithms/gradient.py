@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def gradient(f, x0, epsilon=1e-4):
     n = len(x0)
     gradient = np.zeros(n)
