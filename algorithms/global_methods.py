@@ -107,30 +107,3 @@ def steepest_descent(x0, function, gradient, epsilon=1e-8, max_iter=100):
     end_time = time.time()
     # Return the updated variable `x`, the number of iterations, and the total time taken
     return x, iter, end_time - start_time
-
-
-def inexact_newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, max_iter=100, c=1e-4, rho=0.5,
-                                 delta=0.5):
-    x = x0
-    x_vals = [x]
-    gradient_x = gradient(x)
-    iter = 0
-    start_time = time.time()
-    while np.linalg.norm(gradient_x) >= epsilon and iter < max_iter:
-        iter += 1
-        hessian_x = hessian(x)
-        try:
-            inverse = np.linalg.inv(hessian_x)
-        except np.linalg.LinAlgError:
-            inverse = np.linalg.pinv(hessian_x)
-        dx = -inverse.dot(gradient_x)
-        while True:
-            t = backtracking(x, dx, function, gradient_x, c, rho)
-            if abs(gradient(x + t * dx).T.dot(dx)) <= delta * np.linalg.norm(gradient_x) ** 2:
-                break
-            hessian_x = hessian_x * delta
-        x = x + t * dx
-        x_vals.append(x)
-        gradient_x = gradient(x)
-    end_time = time.time()
-    return x, iter, end_time - start_time, x_vals
