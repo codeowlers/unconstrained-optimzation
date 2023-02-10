@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 
 def plot(function, x_vals, title):
     # Plot the contours of the Chained Rosenbrock function
-    x = np.linspace(-2, 2, 100)
-    y = np.linspace(-1, 3, 100)
+    x = np.linspace(-3, 3, 100)
+    y = np.linspace(-3, 3, 100)
     X, Y = np.meshgrid(x, y)
     Z = function(np.array([X, Y]))
     plt.contour(X, Y, Z)
@@ -36,8 +36,8 @@ def method_plot(x_vals,color1,color2,label):
 
 def plot_all(function, x_vals1, x_vals2, title):
     # Plot the contours of the Chained Rosenbrock function
-    x = np.linspace(0, 2, 100)
-    y = np.linspace(0.5, 2, 100)
+    x = np.linspace(-3, 3, 100)
+    y = np.linspace(-3, 3, 100)
     X, Y = np.meshgrid(x, y)
     Z = function(np.array([X, Y]))
     plt.contour(X, Y, Z)
