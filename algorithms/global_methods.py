@@ -43,17 +43,13 @@ def newton_back_tracking(x0, function, gradient, hessian, epsilon=1e-8, max_iter
     iter = 0
     start_time = time.time()
     while np.linalg.norm(gradient_x) >= epsilon and iter < max_iter:
-        iter += 1
         hessian_x = hessian(x)
-        try:
-            inverse = np.linalg.inv(hessian_x)
-        except np.linalg.LinAlgError:
-            inverse = np.linalg.pinv(hessian_x)
-        dx = -inverse.dot(gradient_x)
+        dx = np.linalg.solve(hessian_x, -gradient_x)
         t = backtracking(x, dx, function, gradient_x, c, rho)
         x = x + t * dx
         x_vals.append(x)
         gradient_x = gradient(x)
+        iter += 1
     end_time = time.time()
     return x, iter, end_time - start_time, x_vals
 
