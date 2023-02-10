@@ -10,8 +10,7 @@ from .generalized_brown import *
 from .plot import plot,plot_all
 
 __all__ = ['rosenbrock', 'rosenbrock_hessian', 'rosenbrock_gradient',
-           'gradient', 'hessian', 'newton', 'newton_back_tracking',
-           'steepest_descent', 'steepest_descent_back_tracking',
+           'gradient', 'hessian', 'newton_back_tracking', 'steepest_descent_back_tracking',
            'chained_rosenbrock', 'chained_rosenbrock_gradient',
            'chained_rosenbrock_hessian', 'grid_search_steepest_descent',
            'problem76', 'problem76_gradient', 'problem76_hessian',
