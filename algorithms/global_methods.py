@@ -64,6 +64,8 @@ def steepest_descent_back_tracking(x0, function, gradient, epsilon=1e-8, max_ite
         t = backtracking(x, d, function, gradient_x, c, rho)
         x = x + t * d
         x_vals.append(x)
+        gradient_x = gradient(x)
+
 
     # Record the ending time
     end_time = time.time()
